@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Todos Tests</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script>
+      window.ENV = {{ENV}};
+      document.write('<base href="' + ENV.rootURL + '" />');
+    </script>
+
+    <link rel="stylesheet" href="assets/app.css">
+    <link rel="stylesheet" href="assets/qunit.css">
+
+    <script src="assets/app.js"></script>
+    <script src="assets/tests.js"></script>
+
+    <style>
+      #ember-testing-container {
+        position: absolute;
+        background: white;
+        bottom: 0;
+        right: 0;
+        width: 640px;
+        height: 384px;
+        overflow: auto;
+        z-index: 9999;
+        border: 1px solid #ccc;
+      }
+      #hide-testing-container {
+        position: absolute;
+        background: white;
+        bottom: 384px;
+        right: 0;
+        width: 50px;
+        height: 20px;
+        overflow: auto;
+        z-index: 9999;
+        border: 1px solid #ccc;
+        cursor:pointer;
+      }
+      #ember-testing {
+        zoom: 50%;
+      }
+      .hidden-testing-container {
+        height: 20px !important;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="qunit"></div>
+    <div id="qunit-fixture"></div>
+    <div id="hide-testing-container">Hide</div>
+    <script>
+      require('todos/tests/test-helper');
+      require('todos/tests/test-loader');
+      $('#hide-testing-container').click(function() {
+        $('#ember-testing-container').toggleClass('hidden-testing-container');
+      });
+    </script>
+  </body>
+</html>
