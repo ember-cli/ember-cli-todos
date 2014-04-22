@@ -17,7 +17,7 @@
   </head>
   <body>
     <script>
-      window.Todos = require('todos/main')['default']('todos');
+      window.Todos = require('todos/app')['default'].create(ENV.APP);
     </script>
   </body>
 </html>
