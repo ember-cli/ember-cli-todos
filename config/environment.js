@@ -1,6 +1,6 @@
 module.exports = function(environment) {
   var ENV = {
-    rootURL: '/',
+    baseURL: '/',
     FEATURES: {
       // Here you can enable experimental features on an ember canary build
       // e.g. 'with-controller': true
@@ -26,5 +26,5 @@ module.exports = function(environment) {
 
   }
 
-  return JSON.stringify(ENV); // Set in index.html
+  return ENV;
 };
