@@ -1,5 +1,3 @@
-// import TodosController from 'todos/controller';
-// import { moduleFor, test } from 'appkit/tests/helpers/module-for';
 import { moduleFor, test } from 'ember-qunit';
 
 moduleFor('controller:todos', 'Unit - TodosController');

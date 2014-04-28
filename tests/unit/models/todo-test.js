@@ -1,7 +1,4 @@
-// import { test , moduleForModel } from 'appkit/tests/helpers/module-for';
 import { moduleForModel, test } from 'ember-qunit';
-
-var Promise = Ember.RSVP.Promise;
 
 moduleForModel('todo', 'Unit - Todo');
 

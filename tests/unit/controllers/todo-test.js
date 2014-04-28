@@ -1,4 +1,3 @@
-// import TodoController from 'todos/item-controller/controller';
 import { moduleFor, test } from 'ember-qunit';
 
 var todo;

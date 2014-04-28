@@ -1,4 +1,3 @@
-// import { test , moduleForComponent } from 'appkit/tests/helpers/module-for';
 import { moduleForComponent, test } from 'ember-qunit';
 
 moduleForComponent('edit-todo');
