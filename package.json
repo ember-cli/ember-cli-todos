@@ -18,8 +18,9 @@
   "author": "",
   "license": "MIT",
   "devDependencies": {
-    "ember-cli" : "git+https://github.com/stefanpenner/ember-cli.git#master",
-    "originate": "~0.1.5",
-    "broccoli-template": "~0.1.1"
+    "ember-cli" : "0.0.25",
+    "originate": "0.1.5",
+    "broccoli-template": "0.1.1",
+    "loom-generators-ember-appkit": "^1.1.0"
   }
 }
