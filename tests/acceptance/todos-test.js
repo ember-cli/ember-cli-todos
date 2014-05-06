@@ -32,6 +32,10 @@ module('Acceptances - Todos', {
   }
 });
 
+function exists(selector) {
+  return !!window.find(selector).length;
+}
+
 function remainingCountText(){
   return Number($('#todo-count strong').text());
 }

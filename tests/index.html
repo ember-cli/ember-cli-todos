@@ -48,11 +48,13 @@
     <div id="qunit-fixture"></div>
     <div id="hide-testing-container">Hide</div>
 
+    <script>
+      window.ENV = {{ENV}};
+    </script>
     <script src="assets/qunit.js"></script>
     <script src="assets/app.js"></script>
     <script src="testem.js"></script>
     <script>
-      window.ENV = {{ENV}};
       require('todos/tests/test-helper');
       require('todos/tests/test-loader');
       $('#hide-testing-container').click(function() {
