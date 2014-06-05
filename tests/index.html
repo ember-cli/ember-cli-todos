@@ -53,14 +53,15 @@
       window.ENV = {{ENV}};
     </script>
     <script src="assets/qunit.js"></script>
+    <script src="assets/qunit-notifications.js"></script>
     <script src="assets/todos.js"></script>
     <script src="testem.js"></script>
     <script>
       require('todos/tests/test-helper');
-      require('todos/tests/test-loader');
       $('#hide-testing-container').click(function() {
         $('#ember-testing-container').toggleClass('hidden-testing-container');
       });
     </script>
+    <script src="assets/test-loader.js"></script>
   </body>
 </html>
