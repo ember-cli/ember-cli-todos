@@ -14,11 +14,11 @@
   </head>
   <body>
     <script>
-      window.ENV = {{ENV}};
+      window.TodosENV = {{ENV}};
     </script>
     <script src="assets/todos.js"></script>
     <script>
-      window.Todos = require('todos/app')['default'].create(ENV.APP);
+      window.Todos = require('todos/app')['default'].create(TodosENV.APP);
     </script>
   </body>
 </html>
