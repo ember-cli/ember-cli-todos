@@ -1,3 +1,9 @@
+## EAK Todos, Updated for Ember-CLI
+
+[![Build Status](https://travis-ci.org/WMeldon/ember-cli-todos.svg?branch=master)](https://travis-ci.org/WMeldon/ember-cli-todos)
+
+Conversion of the [Ember App Kit](https://github.com/stefanpenner/ember-app-kit) sample app, [EAK Todos](https://github.com/stefanpenner/ember-app-kit-todos), to work with the new hotness that is [Ember CLI](https://github.com/stefanpenner/ember-cli).
+
 # Todos
 
 This README outlines the details of collaborating on this Ember application.
