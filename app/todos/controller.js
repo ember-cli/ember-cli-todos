@@ -1,4 +1,5 @@
 // controllers/todos.js
+import Ember from 'ember';
 
 var isEmpty  = Ember.isEmpty;
 var filterBy = Ember.computed.filterBy;
@@ -28,9 +29,9 @@ export default Ember.ArrayController.extend({
     createTodo: function () {
       // Get the todo title set by the "New Todo" text field
       var title = this.get('newTitle');
-      if (title && !title.trim()) { 
-        this.set('newTitle', ''); 
-        return; 
+      if (title && !title.trim()) {
+        this.set('newTitle', '');
+        return;
       }
 
       // Create the new Todo model

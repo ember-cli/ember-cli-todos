@@ -1,4 +1,6 @@
 // controllers/todo.js
+import Ember from 'ember';
+
 var equal = Ember.computed.equal;
 var and = Ember.computed.and;
 var not = Ember.computed.not;

@@ -1,10 +1,25 @@
-## EAK Todos, Updated for Ember-CLI
+# Todos
 
-[![Build Status](https://travis-ci.org/WMeldon/ember-cli-todos.svg?branch=master)](https://travis-ci.org/WMeldon/ember-cli-todos)
+This README outlines the details of collaborating on this Ember application.
 
-I converted the [Ember App Kit](https://github.com/stefanpenner/ember-app-kit) sample app, [EAK Todos](https://github.com/stefanpenner/ember-app-kit-todos), to work with the new hotness that is [Ember CLI](https://github.com/stefanpenner/ember-cli).
+## Installation
 
-Fairly simple process.  Importing directly into a test doesn't work in ember-cli right now, so I'm just resolving dependencies.  Everything else worked more or less out of the box.
+* `git clone` this repository
+* `npm install`
+* `bower install`
 
-Built to better understand the differences between EAK and Ember-CLI.
+## Running
 
+* `ember server`
+* Visit your app at http://localhost:4200.
+
+## Running Tests
+
+* `ember test`
+* `ember test --server`
+
+## Building
+
+* `ember build`
+
+For more information on using ember-cli, visit [http://iamstef.net/ember-cli/](http://iamstef.net/ember-cli/).
