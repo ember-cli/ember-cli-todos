@@ -10,7 +10,7 @@ Todo.reopenClass({
   FIXTURES: [
   {
     id: "1",
-    title: 'install EAK',
+    title: 'install ember-cli',
     isCompleted: true
   }, {
     id: "2",
