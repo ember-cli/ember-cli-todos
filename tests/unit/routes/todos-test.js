@@ -1,4 +1,5 @@
 import { moduleFor, test } from 'ember-qunit';
+import Ember from 'ember';
 
 moduleFor('route:todos', 'Unit - TodoRoute', {
   subject: function(options, factory) {

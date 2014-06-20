@@ -1,4 +1,5 @@
 import { moduleFor, test } from 'ember-qunit';
+import Ember from 'ember';
 
 var todo;
 moduleFor('controller:todos/item-controller', 'Unit - TodoController', {
