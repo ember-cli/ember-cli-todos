@@ -3,6 +3,19 @@ import Resolver from 'todos/tests/helpers/resolver';
 import Ember from 'ember';
 
 var App;
+var visit;
+var click;
+var triggerEvent;
+var fillIn;
+var keyEvent;
+
+function registerHelpers() {
+  click        = App.testHelpers.click;
+  fillIn       = App.testHelpers.fillIn;
+  keyEvent     = App.testHelpers.keyEvent;
+  triggerEvent = App.testHelpers.triggerEvent;
+  visit        = App.testHelpers.visit;
+}
 
 module('Acceptances - Todos', {
   setup: function(){
@@ -27,6 +40,7 @@ module('Acceptances - Todos', {
     ]});
 
     App = startApp();
+    registerHelpers();
   },
   teardown: function() {
     Ember.run(App, 'destroy');
