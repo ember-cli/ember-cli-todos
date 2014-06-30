@@ -1,4 +1,5 @@
 import { moduleForComponent, test } from 'ember-qunit';
+import Ember from 'ember';
 
 moduleForComponent('edit-todo');
 

@@ -1,4 +1,5 @@
 import { test, moduleForModel } from 'ember-qunit';
+import Ember from 'ember';
 
 moduleForModel('todo', 'Integration - Model');
 

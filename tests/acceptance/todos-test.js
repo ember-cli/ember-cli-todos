@@ -1,5 +1,6 @@
 import startApp from 'todos/tests/helpers/start-app';
 import Resolver from 'todos/tests/helpers/resolver';
+import Ember from 'ember';
 
 var App;
 
