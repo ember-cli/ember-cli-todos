@@ -24,44 +24,25 @@
         z-index: 9999;
         border: 1px solid #ccc;
       }
-      #hide-testing-container {
-        position: absolute;
-        background: white;
-        bottom: 384px;
-        right: 0;
-        width: 50px;
-        height: 20px;
-        overflow: auto;
-        z-index: 9999;
-        border: 1px solid #ccc;
-        cursor:pointer;
-      }
       #ember-testing {
         zoom: 50%;
-      }
-      .hidden-testing-container {
-        height: 20px !important;
       }
     </style>
   </head>
   <body>
     <div id="qunit"></div>
     <div id="qunit-fixture"></div>
-    <div id="hide-testing-container">Hide</div>
 
     <script>
       window.TodosENV = {{ENV}};
       window.EmberENV = window.TodosENV.EmberENV;
     </script>
-    <script src="assets/test-support.js"></script>
     <script src="assets/vendor.js"></script>
+    <script src="assets/test-support.js"></script>
     <script src="assets/todos.js"></script>
     <script src="testem.js"></script>
     <script>
       require('todos/tests/test-helper');
-      $('#hide-testing-container').click(function() {
-        $('#ember-testing-container').toggleClass('hidden-testing-container');
-      });
     </script>
     <script src="assets/test-loader.js"></script>
   </body>
