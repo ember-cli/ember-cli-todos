@@ -13,13 +13,11 @@
     <link rel="stylesheet" href="assets/todos.css">
   </head>
   <body>
-    <script>
-      window.TodosENV = {{ENV}};
-      window.EmberENV = window.TodosENV.EmberENV;
-    </script>
     <script src="assets/vendor.js"></script>
     <script src="assets/todos.js"></script>
     <script>
+      window.TodosENV = require('todos/config/environment')['default'];
+      window.EmberENV = window.TodosENV.EmberENV;
       window.Todos = require('todos/app')['default'].create(TodosENV.APP);
     </script>
   </body>

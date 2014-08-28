@@ -33,15 +33,14 @@
     <div id="qunit"></div>
     <div id="qunit-fixture"></div>
 
-    <script>
-      window.TodosENV = {{ENV}};
-      window.EmberENV = window.TodosENV.EmberENV;
-    </script>
     <script src="assets/vendor.js"></script>
     <script src="assets/test-support.js"></script>
     <script src="assets/todos.js"></script>
     <script src="testem.js"></script>
     <script>
+      window.TodosENV = require('todos/config/environment')['default'];
+      window.EmberENV = window.TodosENV.EmberENV;
+
       require('todos/tests/test-helper');
     </script>
     <script src="assets/test-loader.js"></script>
