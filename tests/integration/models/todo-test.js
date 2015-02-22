@@ -1,21 +1,20 @@
-import { test, moduleForModel } from 'ember-qunit';
+import {
+  test,
+  moduleForModel
+} from 'ember-qunit';
 import Ember from 'ember';
 
 moduleForModel('todo', 'Integration - Model');
 
-test('contrived example, loading an additional todo', function(){
-  expect(4);
+test('contrived example, loading an additional todo', function(assert) {
+  assert.expect(4);
 
   var store = this.store();
 
   // he user interacts with the application (via click or something)
   // so lets simulate that via an programmatic run-loop (normally the eventDispatcher does this for us)
-  Ember.run(function(){
-
-    // lets grab all the Todos
-    stop(); // tell qunit to wait
-    store.find('todo').then(function(todos){
-      start(); // tell qunit to resume testing
+  return Ember.run(() => {
+    return store.find('todo').then((todos) => {
 
       // ensure new length
       var numberOfTodos = todos.get('length');
@@ -27,23 +26,16 @@ test('contrived example, loading an additional todo', function(){
         isCompleted: true
       });
 
-      // triggers another find
-      stop(); // tell qunit to wait
-      store.find('todo', 9999).then(function(todo) {
-        start(); // tell qunit to resume testing
-
+      store.find('todo', 9999).then((todo) => {
         // some what trivial but still a good test
-        equal('9999',        todo.get('id'));
-        equal('install EAK', todo.get('title'));
-        equal(true,          todo.get('isCompleted'));
+        assert.equal('9999',        todo.get('id'));
+        assert.equal('install EAK', todo.get('title'));
+        assert.equal(true,          todo.get('isCompleted'));
       });
 
       // lets do another findAll
-      stop(); // tell qunit to wait
-      store.find('todo').then(function(todos){
-        start();
-
-        equal(numberOfTodos + 1, todos.get('length'), 'expect an additional todo');
+      return store.find('todo').then((todos) => {
+        assert.equal(numberOfTodos + 1, todos.get('length'), 'expect an additional todo');
       });
     });
   });

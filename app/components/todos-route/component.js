@@ -1,34 +1,35 @@
-// controllers/todos.js
 import Ember from 'ember';
 
-var isEmpty  = Ember.isEmpty;
+var isEmpty = Ember.isEmpty;
 var filterBy = Ember.computed.filterBy;
-var notEmpty = Ember.computed.notEmpty;
+var computed = Ember.computed;
 
-export default Ember.ArrayController.extend({
-  active:    filterBy('@this', 'isCompleted', false),
-  completed: filterBy('@this', 'isCompleted', true),
-  hasCompleted: notEmpty('completed.[]'),
+export default Ember.Component.extend({
+  completed: filterBy('todos', 'isCompleted', true),
+  active: filterBy('todos', 'isCompleted', false),
 
-  inflection: function () {
+  inflection: computed('active.[]', function() {
     var active = this.get('active.length');
     return active === 1 ? 'item' : 'items';
-  }.property('active.[]'),
+  }).readOnly(),
 
-  allAreDone: function (key, value) {
+  allAreDone: computed('@each.isCompleted', function (key, value) {
     if (arguments.length === 2) {
-      this.setEach('isCompleted', value);
-      this.invoke('save');
+      // TODO: use action instead of a 2 way CP.
+      var todos = this.get('active');
+      todos.setEach('isCompleted', value);
+      todos.invoke('save');
       return value;
     } else {
       return !isEmpty(this) && this.get('length') === this.get('completed.length');
     }
-  }.property('@each.isCompleted'),
+  }),
 
   actions: {
-    createTodo: function () {
+    createTodo() {
       // Get the todo title set by the "New Todo" text field
       var title = this.get('newTitle');
+
       if (title && !title.trim()) {
         this.set('newTitle', '');
         return;
@@ -47,12 +48,12 @@ export default Ember.ArrayController.extend({
       todo.save();
     },
 
-    clearCompleted: function () {
+    clearCompleted() {
       var completed = this.get('completed');
 
       completed.toArray(). // clone the array, so it is not bound while we iterate over and delete.
         invoke('deleteRecord').
         invoke('save');
     }
-  }
+  },
 });

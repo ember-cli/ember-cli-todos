@@ -1,15 +1,11 @@
 import Ember from 'ember';
+import config from './config/environment';
 
 var Router = Ember.Router.extend({
-  location: TodosENV.locationType
+  location: config.locationType
 });
 
-Router.map(function(){
-  this.resource('todos', { path: '/' }, function() {
-    // additional child routes
-    this.route('active');
-    this.route('completed');
-  });
+Router.map(function() {
 });
 
 export default Router;

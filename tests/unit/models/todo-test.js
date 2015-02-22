@@ -1,23 +1,11 @@
-import { moduleForModel, test } from 'ember-qunit';
+import {
+  moduleForModel,
+  test
+} from 'ember-qunit';
 import Ember from 'ember';
 
 moduleForModel('todo', 'Unit - Todo');
 
-test("it exists", function() {
-  var todo = this.subject();
-
-  ok(todo);
-});
-
-test('artificial promise thing', function () {
-  return Ember.run(function(){
-    // TODO:  https://github.com/emberjs/ember.js/pull/4176
-    return new Ember.RSVP.Promise(function(resolve) {
-      Ember.run.later(function(){
-
-        ok(true, "no really, seems good");
-        resolve("seems good");
-      }, 1000);
-    });
-  });
+test("it exists", function(assert) {
+  assert.ok(this.subject());
 });

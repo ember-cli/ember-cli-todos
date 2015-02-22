@@ -1,12 +1,17 @@
 import startApp from 'todos/tests/helpers/start-app';
 import Resolver from 'todos/tests/helpers/resolver';
 import Ember from 'ember';
+import {
+  module,
+  test
+} from 'qunit';
 
 var App;
 
 module('Acceptances - Todos', {
-  setup: function(){
+  beforeEach() {
     var todo = Resolver.resolve('model:todo');
+
     todo.reopenClass({
       FIXTURES: [
         {
@@ -28,7 +33,8 @@ module('Acceptances - Todos', {
 
     App = startApp();
   },
-  teardown: function() {
+
+  afterEach() {
     Ember.run(App, 'destroy');
   }
 });
@@ -37,7 +43,7 @@ function exists(selector) {
   return !!window.find(selector).length;
 }
 
-function remainingCountText(){
+function remainingCountText() {
   return Number($('#todo-count strong').text());
 }
 
@@ -56,114 +62,117 @@ function mock(options) {
   return Ember.$.extend(true, {}, options);
 }
 
-test('todos renders', function(){
-  expect(7);
+test('todos renders', function(assert) {
+  assert.expect(7);
 
-  visit('/').then(function(){
-    ok(exists('#new-todo'));
-    ok(exists('#toggle-all'));
+  visit('/').then(() => {
+    assert.ok(exists('#new-todo'));
+    assert.ok(exists('#toggle-all'));
 
     var list = find('#todo-list li');
-    equal(list.length, 3);
+    assert.equal(list.length, 3);
 
-    ok(exists('#todo-count'));
+    assert.ok(exists('#todo-count'));
 
     var linkList = find('#filters li');
-    equal(linkList.length, 3);
+    assert.equal(linkList.length, 3);
 
-    ok(exists('#clear-completed'));
-    ok(exists('#info'));
+    assert.ok(exists('#clear-completed'));
+    assert.ok(exists('#info'));
   });
 });
 
-test('todos mark last completed', function(){
-  expect(6);
+test('todos mark last completed', function(assert) {
+  assert.expect(6);
 
-  visit('/').then(function(){
-    equal(1, notCompleted().length, 'expected 1 uncompleted');
-    equal(1, remainingCountText());
-    equal(2, completed().length);
+  return visit('/').then(() => {
+    assert.equal(1, notCompleted().length, 'expected 1 uncompleted');
+    assert.equal(1, remainingCountText());
+    assert.equal(2, completed().length);
 
-    click(notCompletedSelector).then(function(){
-      equal(0, notCompleted().length, 'expected 0 uncompleted');
-      equal(0, remainingCountText());
-      equal(3, completed().length);
+    return click(notCompletedSelector).then(() => {
+      assert.equal(0, notCompleted().length, 'expected 0 uncompleted');
+      assert.equal(0, remainingCountText());
+      assert.equal(3, completed().length);
     });
   });
 });
 
-test('todos mark one uncompleted', function(){
-  expect(6);
+test('todos mark one uncompleted', function(assert){
+  assert.expect(6);
 
-  visit('/').then(function(){
-    equal(1, notCompleted().length, 'expected 1 uncompleted');
-    equal(1, remainingCountText());
-    equal(2, completed().length);
+  return visit('/').then(() => {
+    assert.equal(1, notCompleted().length, 'expected 1 uncompleted');
+    assert.equal(1, remainingCountText());
+    assert.equal(2, completed().length);
 
-    click(completedSelector + ':first').then(function(){
-      equal(2, notCompleted().length, 'expected 0 uncompleted');
-      equal(2, remainingCountText());
-      equal(1, completed().length);
+    return click(completedSelector + ':first').then(() => {
+      assert.equal(2, notCompleted().length, 'expected 0 uncompleted');
+      assert.equal(2, remainingCountText());
+      assert.equal(1, completed().length);
     });
   });
 });
 
-test('clear completed', function(){
-  expect(6);
+test('clear completed', function(assert){
+  assert.expect(6);
 
-  visit('/').then(function(){
-    equal(1, notCompleted().length, 'expected 1 uncompleted');
-    equal(1, remainingCountText());
-    equal(2, completed().length);
+  return visit('/').then(() => {
+    assert.equal(1, notCompleted().length, 'expected 1 uncompleted');
+    assert.equal(1, remainingCountText());
+    assert.equal(2, completed().length);
 
-    click('#clear-completed').then(function(){
-      equal(1, notCompleted().length, 'expected 3 uncompleted');
-      equal(1, remainingCountText());
-      equal(0, completed().length);
+    return click('#clear-completed').then(() => {
+      assert.equal(1, notCompleted().length, 'expected 3 uncompleted');
+      assert.equal(1, remainingCountText());
+      assert.equal(0, completed().length);
     });
   });
 });
 
-test("create todo", function(){
-  expect(4);
-  visit('/').then(function(){
+test("create todo", function(assert){
+  assert.expect(4);
+
+  return visit('/').then(() => {
     fillIn('#new-todo', 'bro');
 
     // insert a newline
-    keyEvent('#new-todo', 'keyup', 13).then(function(){
-      equal(2, notCompleted().length, 'expected 1 uncompleted');
-      equal(2, remainingCountText());
-      equal(2, completed().length);
-      equal('bro', $('ul#todo-list li label:last').text());
+    keyEvent('#new-todo', 'keyup', 13).then(() => {
+      assert.equal(2, notCompleted().length, 'expected 1 uncompleted');
+      assert.equal(2, remainingCountText());
+      assert.equal(2, completed().length);
+      assert.equal('bro', $('ul#todo-list li label:last').text());
     });
   });
 });
 
-test("remove todo", function(){
-  expect(3);
-  visit('/').then(function(){
-    click('#todo-list li.completed button.destroy').then(function(){
-      equal(1, notCompleted().length, 'expected 1 uncompleted');
-      equal(1, remainingCountText());
-      equal(0, completed().length);
+test("remove todo", function(assert) {
+  assert.expect(3);
+
+  return visit('/').then(() => {
+    return click('#todo-list li.completed button.destroy').then(() => {
+      assert.equal(1, notCompleted().length, 'expected 1 uncompleted');
+      assert.equal(1, remainingCountText());
+      assert.equal(0, completed().length);
     });
   });
 });
 
-test("edit todo", function(){
-  expect(2);
+test("edit todo", function(assert) {
+  assert.expect(2);
 
-  visit('/').then(function(){
+  return visit('/').then(() => {
     var todo = $('#todo-list li:first');
 
     triggerEvent(todo.find('label'), 'dblclick');
 
     var input = todo.find('input.edit');
-    equal(input.length, 1, 'label should have become transformed into input');
+    assert.equal(input.length, 1, 'label should have become transformed into input');
 
     fillIn(input, 'new task description');
-    keyEvent(input.selector, 'keyup', 13).then(function(){
-      equal(todo.find('label').text(), 'new task description');
+
+    keyEvent(input.selector, 'keyup', 13).then(() => {
+      assert.equal(todo.find('label').text(), 'new task description');
     });
   });
 });
