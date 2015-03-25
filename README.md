@@ -1,7 +1,6 @@
 # Todos
 
-This README outlines the details of collaborating on this Ember application.
-A short introduction of this app could easily go here.
+This is an example of the todo-mvc app, it aims to trail ember-cli and ember.js's latest stable conventions. To view a project more on the bleeding edge, feel to pop over and check out https://github.com/stefanpenner/ember-jobs
 
 ## Prerequisites
 
