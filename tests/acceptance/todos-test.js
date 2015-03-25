@@ -15,17 +15,17 @@ module('Acceptances - Todos', {
     todo.reopenClass({
       FIXTURES: [
         {
-          id: "1",
+          id: '1',
           title: 'install ember-cli',
           isCompleted: true
         },
         {
-          id: "2",
+          id: '2',
           title: 'install additional dependencies',
           isCompleted: true
         },
         {
-          id: "3",
+          id: '3',
           title: 'develop amazing things',
           isCompleted: false
         }
@@ -44,11 +44,11 @@ function exists(selector) {
 }
 
 function remainingCountText() {
-  return Number($('#todo-count strong').text());
+  return Number($('.todo-count strong').text());
 }
 
-var notCompletedSelector = "#todo-list li:not('.completed') input";
-var completedSelector = "#todo-list li.completed input";
+var notCompletedSelector = ".todo-list li:not('.completed') input";
+var completedSelector = '.todo-list li.completed input';
 
 function notCompleted() {
   return $(notCompletedSelector);
@@ -66,19 +66,19 @@ test('todos renders', function(assert) {
   assert.expect(7);
 
   visit('/').then(() => {
-    assert.ok(exists('#new-todo'));
-    assert.ok(exists('#toggle-all'));
+    assert.ok(exists('.new-todo'));
+    assert.ok(exists('.toggle-all'));
 
-    var list = find('#todo-list li');
+    var list = find('.todo-list li');
     assert.equal(list.length, 3);
 
-    assert.ok(exists('#todo-count'));
+    assert.ok(exists('.todo-count'));
 
-    var linkList = find('#filters li');
+    var linkList = find('.filters li');
     assert.equal(linkList.length, 3);
 
-    assert.ok(exists('#clear-completed'));
-    assert.ok(exists('#info'));
+    assert.ok(exists('.clear-completed'));
+    assert.ok(exists('.info'));
   });
 });
 
@@ -122,7 +122,7 @@ test('clear completed', function(assert){
     assert.equal(1, remainingCountText());
     assert.equal(2, completed().length);
 
-    return click('#clear-completed').then(() => {
+    return click('.clear-completed').then(() => {
       assert.equal(1, notCompleted().length, 'expected 3 uncompleted');
       assert.equal(1, remainingCountText());
       assert.equal(0, completed().length);
@@ -130,27 +130,27 @@ test('clear completed', function(assert){
   });
 });
 
-test("create todo", function(assert){
+test('create todo', function(assert){
   assert.expect(4);
 
   return visit('/').then(() => {
-    fillIn('#new-todo', 'bro');
+    fillIn('.new-todo', 'bro');
 
     // insert a newline
-    keyEvent('#new-todo', 'keyup', 13).then(() => {
+    keyEvent('.new-todo', 'keyup', 13).then(() => {
       assert.equal(2, notCompleted().length, 'expected 1 uncompleted');
       assert.equal(2, remainingCountText());
       assert.equal(2, completed().length);
-      assert.equal('bro', $('ul#todo-list li label:last').text());
+      assert.equal('bro', $('ul.todo-list li label:last').text());
     });
   });
 });
 
-test("remove todo", function(assert) {
+test('remove todo', function(assert) {
   assert.expect(3);
 
   return visit('/').then(() => {
-    return click('#todo-list li.completed button.destroy').then(() => {
+    return click('.todo-list li.completed button.destroy').then(() => {
       assert.equal(1, notCompleted().length, 'expected 1 uncompleted');
       assert.equal(1, remainingCountText());
       assert.equal(0, completed().length);
@@ -158,11 +158,11 @@ test("remove todo", function(assert) {
   });
 });
 
-test("edit todo", function(assert) {
+test('edit todo', function(assert) {
   assert.expect(2);
 
   return visit('/').then(() => {
-    var todo = $('#todo-list li:first');
+    var todo = $('.todo-list li:first');
 
     triggerEvent(todo.find('label'), 'dblclick');
 
