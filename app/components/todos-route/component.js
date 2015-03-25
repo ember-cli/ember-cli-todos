@@ -5,6 +5,15 @@ var filterBy = Ember.computed.filterBy;
 var computed = Ember.computed;
 
 export default Ember.Component.extend({
+  filtered: computed('todos.@each.isCompleted', 'filter', function() {
+    var filter = this.get('filter');
+    var all = this.get('todos');
+
+    if (filter === 'all') { return all; }
+
+    return all.filterBy('isCompleted', filter === 'completed');
+  }),
+
   completed: filterBy('todos', 'isCompleted', true),
   active: filterBy('todos', 'isCompleted', false),
 
@@ -13,7 +22,7 @@ export default Ember.Component.extend({
     return active === 1 ? 'item' : 'items';
   }).readOnly(),
 
-  allAreDone: computed('@each.isCompleted', function (key, value) {
+  allAreDone: computed('active.@each.isCompleted', function (key, value) {
     if (arguments.length === 2) {
       // TODO: use action instead of a 2 way CP.
       var todos = this.get('active');

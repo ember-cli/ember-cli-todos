@@ -5,19 +5,7 @@ import {
 
 import Ember from 'ember';
 
-moduleFor('route:application', 'Unit - TodoRoute', {
-  subject(options, factory) {
-    return factory.create({
-      store: {
-        find() { 
-          return Ember.RSVP.Promise.resolve([
-
-          ]);
-        }
-      }
-    });
-  }
-});
+moduleFor('route:application');
 
 test('it exists', function(assert) {
   assert.expect(2);
@@ -28,9 +16,7 @@ test('it exists', function(assert) {
 });
 
 test('#model state:all', function(assert) {
-  assert.expect(2);
-
-  var route = this.subject();
+  assert.expect(3);
 
   var expectedModel = {
     id: '1',
@@ -38,50 +24,18 @@ test('#model state:all', function(assert) {
     isCompleted: true
   };
 
-  route.store.find = function(type) {
-    assert.equal(type, 'todo');
+  var route = this.subject({
+    store: {
+      find(type) {
+        assert.equal(type, 'todo');
 
-    return expectedModel;
-  };
+        return Ember.RSVP.Promise.resolve(expectedModel);
+      }
+    }
+  });
 
-  assert.equal(route.model({
-    state: 'all'
-  }), expectedModel, 'did not correctly invoke store');
-});
-
-
-test('#model state: unknown', function(assert) {
-  assert.expect(1);
-
-  assert.throws( _ => this.subject().model({ state: 'unknown' }) , /Unknown Todo State: 'unknown'/);
-});
-
-test('#model state:active', function(assert) {
-  assert.expect(3);
-
-  var route = this.subject();
-
-  route.store.filter = function(type, fn) {
-    assert.equal(type, 'todo');
-
-    assert.ok(!fn(Ember.Object.create({ isCompleted: true })));
-    assert.ok(fn(Ember.Object.create({ isCompleted: false })));
-  };
-
-  route.model({ state: 'active' });
-});
-
-test('#model state:completed', function(assert) {
-  assert.expect(3);
-
-  var route = this.subject();
-
-  route.store.filter = function(type, fn) {
-    assert.equal(type, 'todo');
-
-    assert.ok(fn(Ember.Object.create({ isCompleted: true })));
-    assert.ok(!fn(Ember.Object.create({ isCompleted: false })));
-  };
-
-  route.model({ state: 'completed' });
+  return route.model({ state: 'all' }).then(function(model) {
+    assert.equal(model.filter, 'all');
+    assert.equal(model.all, expectedModel);
+  });
 });

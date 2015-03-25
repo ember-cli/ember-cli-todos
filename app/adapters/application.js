@@ -44,6 +44,6 @@ export default DS.Adapter.extend({
   },
 
   deleteRecord(store, type, record) {
-    return record;
+    return { id: record.id };
   }
 });
