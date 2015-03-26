@@ -129,6 +129,7 @@ label[for='toggle-all'] {
 	height: 34px;
 	text-align: center;
 	border: none; /* Mobile Safari */
+	cursor: pointer;
 }
 
 .toggle-all:before {
@@ -180,12 +181,14 @@ label[for='toggle-all'] {
 	/* auto, since non-WebKit browsers doesn't support input styling */
 	height: auto;
 	position: absolute;
-	top: 0;
-	bottom: 0;
-	margin: auto 0;
+	top: 50%;
+	left: 0;
+	margin: 0;
+	margin-top: -20px;
 	border: none; /* Mobile Safari */
 	-webkit-appearance: none;
 	appearance: none;
+	cursor: pointer;
 }
 
 .todo-list li .toggle:after {
@@ -197,10 +200,9 @@ label[for='toggle-all'] {
 }
 
 .todo-list li label {
-	white-space: pre;
 	word-break: break-word;
-	padding: 15px 60px 15px 15px;
-	margin-left: 45px;
+	padding: 15px;
+	margin: 0 45px;
 	display: block;
 	line-height: 1.2;
 	transition: color 0.4s;
@@ -214,16 +216,17 @@ label[for='toggle-all'] {
 .todo-list li .destroy {
 	display: none;
 	position: absolute;
-	top: 0;
+	top: 50%;
 	right: 10px;
-	bottom: 0;
 	width: 40px;
 	height: 40px;
-	margin: auto 0;
+	margin: 0;
+	margin-top: -20px;
 	font-size: 30px;
 	color: #cc9a9a;
 	margin-bottom: 11px;
 	transition: color 0.2s ease-out;
+	cursor: pointer;
 }
 
 .todo-list li .destroy:hover {
@@ -310,26 +313,15 @@ label[for='toggle-all'] {
 }
 
 .clear-completed,
-html .clear-completed:active {
+.clear-completed:active {
 	float: right;
 	position: relative;
 	line-height: 20px;
 	text-decoration: none;
 	cursor: pointer;
-	visibility: hidden;
-	position: relative;
 }
 
-.clear-completed::after {
-	visibility: visible;
-	content: 'Clear completed';
-	position: absolute;
-	top: 0;
-	right: 0;
-	white-space: nowrap;
-}
-
-.clear-completed:hover::after {
+.clear-completed:hover {
 	text-decoration: underline;
 }
 

@@ -3,10 +3,9 @@ import {
   test
 } from 'ember-qunit';
 
-moduleForComponent('todo-item', {
+moduleForComponent('todo-checkbox', {
   // specify the other units that are required for this test
   // needs: ['component:foo', 'helper:bar']
-  needs: ['component:todo-checkbox']
 });
 
 test('it renders', function(assert) {
