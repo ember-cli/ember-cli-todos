@@ -22,8 +22,21 @@ export default Ember.Component.extend({
     return active === 1 ? 'item' : 'items';
   }).readOnly(),
 
+<<<<<<< HEAD
   allAreDone: computed('todos.@each.isCompleted', function() {
     return isEmpty(this.get('active'));
+=======
+  allAreDone: computed('filtered.@each.isCompleted', function (key, value) {
+    if (arguments.length === 2) {
+      // TODO: use action instead of a 2 way CP.
+      var todos = this.get('todos');
+      todos.setEach('isCompleted', value);
+      todos.invoke('save');
+      return value;
+    } else {
+      return !isEmpty(this) && this.get('todos.length') === this.get('completed.length');
+    }
+>>>>>>> the selectAll button can now unselectAll as well
   }),
 
   actions: {
