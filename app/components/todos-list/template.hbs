@@ -1,4 +1,6 @@
 {{#each todos as |todo|}}
-  {{todo-item todo=todo}}
+  {{todo-item todo=todo 
+              actionPatchTodo='patchTodo' 
+              actionDeleteTodo='deleteTodo'}}
 {{/each}}
 

@@ -25,7 +25,7 @@ export default DS.Adapter.extend({
 
   createRecord(store, type, record) {
     // rather then doing an ajax, just echo back the data that was created
-    var json = record.toJSON();
+    var json = record;
 
     // assign a unique ID like the server word
     json.id = Date.now();
@@ -36,7 +36,7 @@ export default DS.Adapter.extend({
 
   updateRecord(store, type, record) {
     // rather then doing an ajax, just echo back the data that was updated
-    var json = record.toJSON();
+    var json = record;
 
     json.id = record.id;
 

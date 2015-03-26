@@ -1,9 +1,12 @@
 {{#if isEditing}}
-  {{edit-todo class='edit' value=todo.title
-                           focus-out='save'
-                           insert-newline='save'}}
+  {{edit-todo class='edit' 
+              value=title
+              focus-out='titleChange'
+              insert-newline='titleChange'}}
 {{else}}
-  {{input type='checkbox' checked=todo.isCompleted class='toggle'}}
-  <label {{action 'editTodo' on='doubleClick'}}>{{todo.title}}</label>
+  {{todo-checkbox class="toggle" 
+                  checked=isCompleted
+                  action='isCompletedChange'}}
+  <label {{action 'editTodo' on='doubleClick'}}>{{title}}</label>
   <button {{action 'removeTodo'}} class='destroy'></button>
 {{/if}}
