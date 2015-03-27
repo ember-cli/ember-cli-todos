@@ -23,19 +23,21 @@ export default DS.Adapter.extend({
     ];
   },
 
-  createRecord(store, type, record) {
+  createRecord(store, type, snapshot) {
     // rather then doing an ajax, just echo back the data that was created
+    var record = snapshot.record;
     var json = record.toJSON();
 
-    // assign a unique ID like the server word
+    // assign a unique ID like the server would
     json.id = Date.now();
 
     // return a value or a promise
     return json;
   },
 
-  updateRecord(store, type, record) {
+  updateRecord(store, type, snapshot) {
     // rather then doing an ajax, just echo back the data that was updated
+    var record = snapshot.record;
     var json = record.toJSON();
 
     json.id = record.id;
@@ -43,7 +45,9 @@ export default DS.Adapter.extend({
     return json;
   },
 
-  deleteRecord(store, type, record) {
+  deleteRecord(store, type, snapshot) {
+    var record = snapshot.record;
+
     return { id: record.id };
   }
 });
