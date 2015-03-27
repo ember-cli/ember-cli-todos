@@ -21,7 +21,6 @@ export default Ember.Component.extend({
   indeterminate: false,
 
   didInsertElement() {
-    this._super();
     this.get('element').indeterminate = !!this.get('indeterminate');
   },
 
