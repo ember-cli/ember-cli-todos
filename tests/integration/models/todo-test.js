@@ -4,7 +4,9 @@ import {
 } from 'ember-qunit';
 import Ember from 'ember';
 
-moduleForModel('todo', 'Integration - Model');
+moduleForModel('todo', 'Integration - Model', {
+  integration: true
+});
 
 test('contrived example, loading an additional todo', function(assert) {
   assert.expect(4);
