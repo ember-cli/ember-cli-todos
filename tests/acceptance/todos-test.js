@@ -164,15 +164,14 @@ test('edit todo', function(assert) {
   return visit('/').then(() => {
     var todo = $('.todo-list li:first');
 
-    triggerEvent(todo.find('label'), 'dblclick');
+    triggerEvent(todo.find('label'), 'dblclick').then(() => {
+      var input = todo.find('input.edit');
+      assert.equal(input.length, 1, 'label should have become transformed into input');
 
-    var input = todo.find('input.edit');
-    assert.equal(input.length, 1, 'label should have become transformed into input');
-
-    fillIn(input, 'new task description');
-
-    keyEvent(input.selector, 'keyup', 13).then(() => {
-      assert.equal(todo.find('label').text(), 'new task description');
+      fillIn(input, 'new task description');
+      keyEvent(input.selector, 'keyup', 13).then(() => {
+        assert.equal(todo.find('label').text(), 'new task description');
+      });
     });
   });
 });
