@@ -5,7 +5,7 @@ import {
 import Ember from 'ember';
 
 moduleForModel('todo', 'Integration - Model', {
-  integration: true
+  needs: ['adapter:application']
 });
 
 test('contrived example, loading an additional todo', function(assert) {

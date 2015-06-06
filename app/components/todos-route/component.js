@@ -3,8 +3,11 @@ import Ember from 'ember';
 var isEmpty = Ember.isEmpty;
 var filterBy = Ember.computed.filterBy;
 var computed = Ember.computed;
+var service = Ember.inject.service;
 
 export default Ember.Component.extend({
+  store: service(),
+
   filtered: computed('todos.@each.isCompleted', 'filter', function() {
     var filter = this.get('filter');
     var all = this.get('todos');
@@ -22,20 +25,23 @@ export default Ember.Component.extend({
     return active === 1 ? 'item' : 'items';
   }).readOnly(),
 
-  allAreDone: computed('filtered.@each.isCompleted', function (key, value) {
-    if (arguments.length === 2) {
-      // TODO: use action instead of a 2 way CP.
+  allAreDone: computed('filtered.@each.isCompleted', {
+    get() {
+      return !isEmpty(this) && this.get('todos.length') === this.get('completed.length');
+    },
+    set(key, value) {
+      // TODO: use action instead of a 2 way CP
       var todos = this.get('todos');
       todos.setEach('isCompleted', value);
       todos.invoke('save');
       return value;
-    } else {
-      return !isEmpty(this) && this.get('todos.length') === this.get('completed.length');
-    }
+    } 
   }),
 
   actions: {
     createTodo() {
+      const store = this.get('store');
+
       // Get the todo title set by the "New Todo" text field
       var title = this.get('newTitle');
 
@@ -45,7 +51,7 @@ export default Ember.Component.extend({
       }
 
       // Create the new Todo model
-      var todo = this.store.createRecord('todo', {
+      var todo = store.createRecord('todo', {
         title: title
       });
 
