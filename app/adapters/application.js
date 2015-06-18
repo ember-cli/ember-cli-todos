@@ -1,6 +1,10 @@
 import DS from 'ember-data';
 
 export default DS.Adapter.extend({
+  shouldReloadAll() {
+    //silence ember-data deprecation
+    return true;
+  },
   findAll() {
     // rather then doing an ajax, just echo back the default data
 
