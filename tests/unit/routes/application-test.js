@@ -26,7 +26,7 @@ test('#model state:all', function(assert) {
 
   var route = this.subject({
     store: {
-      find(type) {
+      findAll(type) {
         assert.equal(type, 'todo');
 
         return Ember.RSVP.Promise.resolve(expectedModel);
