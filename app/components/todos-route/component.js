@@ -1,11 +1,13 @@
 import Ember from 'ember';
 
-var isEmpty = Ember.isEmpty;
-var filterBy = Ember.computed.filterBy;
-var computed = Ember.computed;
-var service = Ember.inject.service;
+const {
+  Component,
+  isEmpty,
+  computed: { filterBy },
+  inject: { service }
+} = Ember;
 
-export default Ember.Component.extend({
+export default Component.extend({
   store: service(),
 
   filtered: computed('todos.@each.isCompleted', 'filter', function() {
