@@ -3,6 +3,7 @@ import Ember from 'ember';
 const {
   Component,
   isEmpty,
+  computed,
   computed: { filterBy },
   inject: { service }
 } = Ember;
@@ -37,7 +38,7 @@ export default Component.extend({
       todos.setEach('isCompleted', value);
       todos.invoke('save');
       return value;
-    } 
+    }
   }),
 
   actions: {
