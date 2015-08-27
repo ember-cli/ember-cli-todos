@@ -2,16 +2,16 @@
 import Ember from 'ember';
 
 export default Ember.Route.extend({
+
   queryParams: {
     state: { refreshModel: true }
   },
 
   model(params) {
-    return this.store.findAll('todo').then((todos) => {
-      return {
-        all: todos,
-        filter: params.state
-      };
-    });
+    return this.store.findAll('todo').then((todos) => ({
+      all: todos,
+      filter: params.state
+    }));
   }
+
 });
