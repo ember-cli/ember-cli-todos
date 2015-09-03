@@ -69,8 +69,7 @@ export default Component.extend({
       var completed = this.get('completed');
 
       completed.toArray(). // clone the array, so it is not bound while we iterate over and delete.
-        invoke('deleteRecord').
-        invoke('save');
+        invoke('destroyRecord');
     }
   },
 });

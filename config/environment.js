@@ -16,16 +16,6 @@ module.exports = function(environment) {
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
-    },
-
-    contentSecurityPolicy: {
-      'default-src': "'none'",
-      'script-src': "'self'",
-      'font-src': "'self'",
-      'connect-src': "'self'",
-      'img-src': "'self' data:",
-      'style-src': "'self'",
-      'media-src': "'self'"
     }
   };
 
@@ -35,6 +25,17 @@ module.exports = function(environment) {
     // ENV.APP.LOG_TRANSITIONS = true;
     // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
     // ENV.APP.LOG_VIEW_LOOKUPS = true;
+
+    // alter the content security policy for dev
+    ENV.contentSecurityPolicy = {
+      'default-src': "'none'",
+      'script-src': "'self' 'unsafe-inline'",
+      'font-src': "'self'",
+      'connect-src': "'self'",
+      'img-src': "'self' data:",
+      'style-src': "'self' 'unsafe-inline'",
+      'media-src': "'self'"
+    }
   }
 
   if (environment === 'test') {
