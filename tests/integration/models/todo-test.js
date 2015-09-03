@@ -33,16 +33,16 @@ test('contrived example, loading an additional todo', function(assert) {
         }
       });
 
-      store.findRecord('todo', 9999).then((todo) => {
-        // some what trivial but still a good test
-        assert.equal('9999',        todo.get('id'));
-        assert.equal('install EAK', todo.get('title'));
-        assert.equal(true,          todo.get('isCompleted'));
-      });
-
-      // lets do another findAll
+      // // lets do another findAll
       return store.findAll('todo').then((todos) => {
         assert.equal(numberOfTodos + 1, todos.get('length'), 'expect an additional todo');
+
+        var todo = todos.get('lastObject');
+
+        // some what trivial but still a good test
+        assert.equal('9999',          todo.get('id'));
+        assert.equal('install EAK', todo.get('title'));
+        assert.equal(true,          todo.get('isCompleted'));
       });
     });
   });
