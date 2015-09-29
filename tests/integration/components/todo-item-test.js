@@ -22,7 +22,9 @@ test('completed checkbox triggers a save', function (assert) {
 
   assert.notOk(todo.get('isSaving'), 'todo is not saving before click');
 
-  this.$('input[type=checkbox]').click();
+  Ember.run(() => {
+    this.$('input[type=checkbox]').click();
+  });
 
   assert.ok(todo.get('isCompleted'), 'todo is completed after click');
   assert.ok(todo.get('isSaving'), 'todo is saving after click');
