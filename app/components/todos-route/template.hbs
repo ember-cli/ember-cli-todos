@@ -11,9 +11,10 @@
   <section class='main'>
     {{todos-list todos=filtered class='todo-list'}}
 
-    {{input type='checkbox'
+    <input type='checkbox'
             class='toggle-all'
-            checked=allAreDone}}
+            checked={{allAreDone}}
+            onchange={{action 'completeAll'}}>
   </section>
 
   <footer class='footer'>

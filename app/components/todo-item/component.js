@@ -14,16 +14,20 @@ export default Ember.Component.extend({
       this.set('isEditing', true);
     },
 
-    removeTodo() {
-      var todo = this.get('todo');
+    save(todo, title) {
+      this.set('isEditing', false);
 
-      todo.deleteRecord();
+      todo.set('title', title);
       todo.save();
     },
 
-    save() {
-      this.set('isEditing', false);
-      this.get('todo').save();
+    removeTodo(todo) {
+      todo.destroyRecord();
+    },
+
+    toggleCompleteTodo(todo) {
+      todo.toggleProperty('isCompleted');
+      todo.save();
     }
-  },
+  }
 });
