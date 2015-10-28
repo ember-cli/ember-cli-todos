@@ -2,7 +2,7 @@
 
 module.exports = function(environment) {
   var ENV = {
-    modulePrefix: 'todos',
+    modulePrefix: 'frontend',
     environment: environment,
     baseURL: '/',
     locationType: 'auto',
