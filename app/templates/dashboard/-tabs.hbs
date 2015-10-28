@@ -1,0 +1,17 @@
+<!-- Nav tabs -->
+<ul class="nav nav-tabs">
+  {{#each model as |tab|}}
+    <li role="presentation" class="{{if isActiveRoute "active"}}">
+      {{#link-to 'dashboard.show' tab.id tagName='a'}}
+        {{tab.name}}
+      {{/link-to}}
+    </li>
+  {{/each}}
+</ul>
+
+<!-- Tab panes -->
+<div class="tab-content">
+  <div class="tab-pane active">
+    {{outlet}}
+  </div>
+</div>

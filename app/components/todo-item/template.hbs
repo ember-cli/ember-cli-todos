@@ -1,9 +1,0 @@
-{{#if isEditing}}
-  {{edit-todo class='edit' value=todo.title
-                           focus-out=(action 'save' todo)
-                           insert-newline=(action 'save' todo)}}
-{{else}}
-  <input type='checkbox' checked={{todo.isCompleted}} class='toggle' onchange={{action 'toggleCompleteTodo' todo}}>
-  <label {{action 'editTodo' on='doubleClick'}}>{{todo.title}}</label>
-  <button {{action 'removeTodo' todo}} class='destroy'></button>
-{{/if}}
