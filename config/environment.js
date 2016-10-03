@@ -4,7 +4,7 @@ module.exports = function(environment) {
   var ENV = {
     modulePrefix: 'todos',
     environment: environment,
-    baseURL: '/',
+    rootURL: '/',
     locationType: 'auto',
     EmberENV: {
       FEATURES: {
@@ -25,22 +25,10 @@ module.exports = function(environment) {
     // ENV.APP.LOG_TRANSITIONS = true;
     // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
     // ENV.APP.LOG_VIEW_LOOKUPS = true;
-
-    // alter the content security policy for dev
-    ENV.contentSecurityPolicy = {
-      'default-src': "'none'",
-      'script-src': "'self' 'unsafe-inline'",
-      'font-src': "'self'",
-      'connect-src': "'self'",
-      'img-src': "'self' data:",
-      'style-src': "'self' 'unsafe-inline'",
-      'media-src': "'self'"
-    }
   }
 
   if (environment === 'test') {
     // Testem prefers this...
-    ENV.baseURL = '/';
     ENV.locationType = 'none';
 
     // keep test console output quieter
