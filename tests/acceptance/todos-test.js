@@ -58,10 +58,6 @@ function completed() {
   return $(completedSelector);
 }
 
-function mock(options) {
-  return Ember.$.extend(true, {}, options);
-}
-
 test('todos renders', function(assert) {
   assert.expect(7);
 
@@ -153,7 +149,7 @@ test('remove todo', function(assert) {
     return click('.todo-list li.completed button.destroy').then(() => {
       assert.equal(1, notCompleted().length, 'expected 1 uncompleted');
       assert.equal(1, remainingCountText());
-      assert.equal(0, completed().length);
+      assert.equal(1, completed().length);
     });
   });
 });
@@ -169,7 +165,7 @@ test('edit todo', function(assert) {
       assert.equal(input.length, 1, 'label should have become transformed into input');
 
       fillIn(input, 'new task description');
-      keyEvent(input.selector, 'keyup', 13).then(() => {
+      keyEvent(input, 'keyup', 13).then(() => {
         assert.equal(todo.find('label').text(), 'new task description');
       });
     });
