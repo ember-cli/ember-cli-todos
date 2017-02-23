@@ -38,6 +38,19 @@ Make use of the many generators for code, try `ember help generate` for more det
 * `ember build` (development)
 * `ember build --environment production` (production)
 
+### To Run Against the Elixir/Phoenix API in the Blog Post
+
+Change `app/adapters/application.js` to this: 
+```
+// export { default } from 'ember-data-fixture-adapter';
+import JSONAPIAdapter from 'ember-data/adapters/json-api';
+
+export default JSONAPIAdapter.extend({
+});
+```
+* Start the Elixir Phoenix app on port 4000
+* `ember server --proxy http://localhost:4000`
+
 ### Deploying
 
 Specify what it takes to deploy your app.
